@@ -1,3 +1,4 @@
+
  // Initialize Firebase
  var config = {
     apiKey: "AIzaSyDE2vhxcpy_mIQ7xlURKPlY_d4YnLyR0PE",
@@ -8,3 +9,7 @@
     messagingSenderId: "858372923149"
   };
   firebase.initializeApp(config);
+
+// Create API link to Bandsintown
+// App ID = ab1539793d4956976bf4f8052a7ed8cb
+

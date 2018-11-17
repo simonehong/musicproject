@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,49 @@
     <link rel="stylesheet" href="sytle.css" type="text/css">
     <title>Music Funtimes!</title>
 </head>
+
 <body background=>
     <div class="container">
-            <div class="row">
-                    <div class="col s12">
-                      <div class="card-panel orange">
-                        <span class="white-text header">
-                            <h2>Jamtastic</h2>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
         <div class="row">
-        <div class="col s3">
-            <p>Some Content!</p>
+            <div class="col s12">
+                <div class="card-panel teal">
+                    <span class="white-text header">
+                        <h2>Jamtastic</h2>
+                    </span>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col s3" id="firebasePanel">
+                <div class="collection with-header">
+                    <div class="collection-header">
+                        <h6>Previous Searches</h6>
+                    </div>
+                    <a href="#!" class="collection-item" data-value="Taylor Swift">Taylor Swift</a>
+                    <a href="#!" class="collection-item" data-value="Linkin Park">Linkin Park</a>
+                    <a href="#!" class="collection-item" data-value="Amaranthe">Amaranthe</a>
+                    <a href="#!" class="collection-item" data-value="I Killed a Bear Once">I Killed a Bear Once</a>
+                </div>
+            </div>
+            <div class="col s5" id="bandsInTownPanel">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="" id="bandSearch" type="text" class="validate">
+                        <label class="active" for="bandSearch">Band Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- put band information here
+                    need to know what data is pulled by api -->
+                </div>
+            </div>
+            <div class="col s4" id="youTubePanel">
+                <!-- put imbedded players here -->
+            </div>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>   
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 </body>
+
 </html>

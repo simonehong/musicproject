@@ -10,6 +10,131 @@
   };
   firebase.initializeApp(config);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Create API link to Bandsintown
 // App ID = ab1539793d4956976bf4f8052a7ed8cb
+var artistName = "Foo Fighters"
 
+
+
+
+// Get Artist Object from BandsInTown
+function getArtistInfo(artistName) {
+
+var queryBand = "https://rest.bandsintown.com/artists/" +
+        artistName + "/events/?app_id=ab1539793d4956976bf4f8052a7ed8cb";
+
+$.ajax({
+  url: queryBand,
+  method: "GET"
+}).then(function(response) {
+
+  // Printing the entire object to console
+  console.log(response);
+});
+};
+
+// Get Events Array from BandsInTown
+function getEventInfo(artistName) {
+
+  var queryBand = "https://rest.bandsintown.com/artists/" +
+          artistName + "?app_id=ab1539793d4956976bf4f8052a7ed8cb";
+  
+  $.ajax({
+    url: queryBand,
+    method: "GET"
+  }).then(function(response) {
+  
+    // Printing the entire object to console
+    console.log(response);
+  });
+  };
+
+getArtistInfo(artistName);
+getEventInfo(artistName);

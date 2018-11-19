@@ -101,6 +101,9 @@
 // App ID = ab1539793d4956976bf4f8052a7ed8cb
 var artistName = "Foo Fighters"
 
+var artistName = "Taylor Swift"
+var queryBand = "https://rest.bandsintown.com/artists" +
+        artistName + "?app_id=ab1539793d4956976bf4f8052a7ed8cb";
 
 
 

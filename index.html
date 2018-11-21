@@ -14,7 +14,8 @@
 <body background=>
     <div class="container">
         <div class="row">
-            <div class="col s12">
+            <div class="col l12 m12 s12">
+
                 <div class="card-panel teal">
                     <span class="white-text header">
                         <h2>Jamtastic</h2>
@@ -23,40 +24,86 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s3" id="firebasePanel">
+            <div class="col l5 m5 s12 push-l3 push-m3" id="bandsInTownPanel">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="" id="bandSearch" type="text" class="validate col s9">
+                        <label class="active" for="bandSearch">Band Name</label>
+                        <button class="btn waves-effect waves-light col s3" type="button" name="action" id="submit">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row" id="artistInfo">
+                    <!-- This is an html model/placeholder for what to push into the div via the JavaScript/jQuery -->
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <!-- use artist's image here -->
+                            <img class="activator" src="https://s3.amazonaws.com/bit-photos/thumb/8652942.jpeg">
+                        </div>
+                        <div class="card-content">
+                            <!-- insert artist's name here -->
+                            <span class="card-title activator grey-text text-darken-4 artist-name">Taylor Swift<i class="material-icons right">more_vert</i></span>
+                            <!-- bandsintown link here -->
+                            <p><a href="https://www.bandsintown.com/a/157?came_from=267&app_id=ab1539793d4956976bf4f8052a7ed8cb"
+                                    target="_blank">Artist info page</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4 artist-name">Taylor Swift<i class="material-icons right">close</i></span>
+                            <p><strong>Followers: </strong>5,682,424</p>
+                            <p><strong>Upcoming Events: </strong>2</p>
+                            <hr>
+                            <p><strong>Date: </strong> Nov 18th, 2018 - 6:25 pm</p>
+                            <p><strong>Venue: </strong>Tokyo Dome - Tokyo, Japan</p>
+                            <p><strong>Lineup: </strong>Taylor Swift</p>
+                            <p>
+                                <!-- this is from results[i].offers in the events JSON -->
+                                <a href="https://www.bandsintown.com/t/1011982851?app_id=ab…ium=api&utm_source=public_api&utm_campaign=ticket"
+                                    target="_blank"><button type="button" class="waves-effect waves-light btn">Buy
+                                        Tickets</button></a>
+                            </p>
+                            <hr>
+                            <p><strong>Date: </strong> Nov 19th, 2018 - 7:00 pm</p>
+                            <p><strong>Venue: </strong>Tokyo Dome - Tokyo, Japan</p>
+                            <p><strong>Lineup: </strong>Taylor Swift</p>
+                            <p>
+                                <a href="https://www.bandsintown.com/t/1011561249?app_id=ab1539793d4956976bf4f8052a7ed8cb&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+                                    target="_blank"><button type="button" class="waves-effect waves-light btn">Buy
+                                        Tickets</button></a>
+                            </p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="eventInfo"></div>
+            </div>
+            <div class="col l4 m4 s12 push-l5 push-m5" id="youTubePanel">
+                <!-- put imbedded players here -->
+            </div>
+            <div class="col l3 m3 s12 pull-l9 pull-m9" id="firebasePanel">
                 <div class="collection with-header">
                     <div class="collection-header">
                         <h6>Previous Searches</h6>
                     </div>
                     <a class="collection-item" data-value="Taylor Swift">Taylor Swift</a>
-                    <a class="collection-item" data-value="Taylor Swift">Taylor Swift</a>
-                    <a class="collection-item" data-value="Taylor Swift">Taylor Swift</a>
-                    <a class="collection-item" data-value="Taylor Swift">Taylor Swift</a>
+                    <a class="collection-item" data-value="Foo Fighers">Foo Fighers</a>
+                    <a class="collection-item" data-value="Insomnium">Insomnium</a>
+                    <a class="collection-item" data-value="Ne Obliviscaris">Ne Obliviscaris</a>
                     <!-- append search terms here -->
                 </div>
             </div>
-            <div class="col s5" id="bandsInTownPanel">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input value="" id="bandSearch" type="text" class="validate">
-                        <label class="active" for="bandSearch">Band Name</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- put band information here
-                    need to know what data is pulled by api -->
-                </div>
-            </div>
-            <div class="col s4" id="youTubePanel">
-                <!-- put imbedded players here -->
-            </div>
+
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
     <script src="script.js"></script>
 </body>
 

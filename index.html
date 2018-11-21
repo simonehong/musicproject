@@ -23,27 +23,42 @@
                 </div>
             </div>
         </div>
+        <!-- <nav>
+            <div class="nav-wrapper">
+              <form class="row">
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label class="label-icon"><i class="material-icons">search</i></label>
+                  <i class="btn waves-effect waves-light col l2 m2 s2" for="search">Submit</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+          </div> -->
+        <div class="row">
+            <div class="input-field col s12">
+                <input value="" id="bandSearch" type="text" class="validate col l10 m10 s10">
+                <label class="active" for="bandSearch">Band Name</label>
+                <button class="btn-large waves-effect waves-light col l2 m2 s2" type="button" name="action" id="submit">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col l5 m5 s12 push-l3 push-m3" id="bandsInTownPanel">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input value="" id="bandSearch" type="text" class="validate col s9">
-                        <label class="active" for="bandSearch">Band Name</label>
-                        <button class="btn waves-effect waves-light col s3" type="button" name="action" id="submit">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
+
                 <div class="row" id="artistInfo">
                     <!-- This is an html model/placeholder for what to push into the div via the JavaScript/jQuery -->
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
                             <!-- use artist's image here -->
-                            <img class="activator" id="artistpicture" src="https://s3.amazonaws.com/bit-photos/thumb/8652942.jpeg">
+
+                            <img class="activator" id="artistpicture" src="https://s3.amazonaws.com/bit-photos/large/8652942.jpeg">
+
                         </div>
                         <div class="card-content">
                             <!-- insert artist's name here -->
-                            <span class="card-title activator grey-text text-darken-4 artist-name">Taylor Swift<i class="material-icons right">more_vert</i></span>
+                            <span class="card-title activator grey-text text-darken-4 artist-name">Taylor Swift<a class="btn-small waves-effect waves-light red right event-button"><i class="material-icons">events</i><i id="buttonText">Events</i></a></span>
                             <!-- bandsintown link here -->
                             <p><a id="artist-page" href="https://www.bandsintown.com/a/157?came_from=267&app_id=ab1539793d4956976bf4f8052a7ed8cb"
                                     target="_blank">Artist info page</a></p>

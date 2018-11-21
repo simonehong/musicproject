@@ -49,7 +49,7 @@
       prevArtist.attr("data-value", artistName);
       prevArtist.text(artistName);
 
-      $("#prevSearch").preappend(prevArtist);
+      $("#prevSearch").append(prevArtist);
          
       
  })

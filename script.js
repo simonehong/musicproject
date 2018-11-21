@@ -114,7 +114,7 @@ $.ajax({
   // Printing the entire object to console
   console.log(response);
 
-  
+
   
 });
 };
@@ -134,19 +134,14 @@ function getArtistInfo(artistName) {
     console.log(response);
     //fill in the Card with artist info
     $("#artistpicture").attr("src", response.image_url);
-    $(".artist-name").html(artistName);
+    $(".artist-name").html(artistName+'<a class="btn-small waves-effect waves-light red right event-button"><i class="material-icons">events</i><i id="buttonText">Events</i></a></span>');
     $("#artist-page").attr("href",response.url)
 
   });
   };
 
-
-
-
-
-getArtistInfo(artistName);
-getEventInfo(artistName);
-
+  getArtistInfo(artistName);
+  getEventInfo(artistName);
 
 
 

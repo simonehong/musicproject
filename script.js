@@ -10,6 +10,49 @@
   };
   firebase.initializeApp(config);
 
+  var database = firebase.database();
+
+  //new band search will be created on button submit click
+  $("#submit").on("click", function(event){
+  event.preventDefault();
+  
+  //Grab user input
+  var artistName = $("#bandSearch").val().trim();
+
+  // Creates local "temporary" object for holding search data
+  var searchArtist = {
+       name: artistName,
+       dateAdded: firebase.database.ServerValue.TIMESTAMP 
+  };
+
+  database.ref().push(searchArtist);
+
+  console.log(searchArtist.name);
+  console.log(searchArtist.dateAdded);
+
+  //clear search box
+  $("#bandSearch").val("");
+
+  });
+
+  //create firebase event to push artist to database and append to previous search list on html
+    database.ref().on("child_added", function(childSnapshot){
+      var artistName = childSnapshot.val().name;
+      var dateAdded = childSnapshot.val().dateAdded;
+
+      console.log(artistName);
+      console.log(dateAdded);
+
+  //push search term to previous search card
+      var prevArtist = $("<a>");
+      prevArtist.addClass("collection-item");
+      prevArtist.attr("data-value", artistName);
+      prevArtist.text(artistName);
+
+      $("#prevSearch").preappend(prevArtist);
+         
+      
+ })
 
 
 

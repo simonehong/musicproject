@@ -1,9 +1,12 @@
-.header {
-    text-align: center;
+#bigHeader {
+    height: 6rem;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 body {
-    background-color: #edffe8;
+    background-color: #050a06;
+    transition: 0.3s;
 }
 
 div {
@@ -28,6 +31,7 @@ div {
 /* custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
+    transition: 0.3s;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,11 +42,32 @@ div {
 ::-webkit-scrollbar-thumb {
     background: teal; 
     border-radius: 10px;
+    transition: 0.3s;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 700px) {
     #submit {
         font-size: 1rem;
         /* height: 3rem; */
+    }
+}
+
+@media (max-width: 520px) {
+    #submit {
+        padding-left: 2px;
+        font-size: 0.7rem;
+    }
+
+    body {
+        background-color: #009688;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: white; 
+        border-radius: 10px;
     }
 }

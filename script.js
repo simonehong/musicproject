@@ -18,6 +18,8 @@
   
   //Grab user input
   var artistName = $("#bandSearch").val().trim();
+  getArtistInfo(artistName);
+  getEventInfo(artistName);
 
   // Creates local "temporary" object for holding search data
   var searchArtist = {
@@ -157,6 +159,17 @@ $.ajax({
   // Printing the entire object to console
   console.log(response);
 
+$("#eventsNum").html("")
+$("#eventsNum").append("<strong>Upcoming Events: </strong>"+response.length);
+$(".event-info").html("");
+
+
+  for (let i = 0; i < response.length; i++) {
+    $(".event-info").append("<p><strong>Date: </strong>"+response[i].datetime+"</p>")
+    $(".event-info").append("<p><strong>Venue: </strong>"+response[i].venue.name+" - "+response[i].venue.city+", "+response[i].venue.country+"</p>")
+    $(".event-info").append("<p><a href='"+response[i].url+"' target='_blank'><button type='button' class='waves-effect waves-light btn'>Buy Tickets</button></a></p>")
+    
+  };
 
   
 });
@@ -178,13 +191,14 @@ function getArtistInfo(artistName) {
     //fill in the Card with artist info
     $("#artistpicture").attr("src", response.image_url);
     $(".artist-name").html(artistName+'<a class="btn-small waves-effect waves-light red right event-button"><i class="material-icons">events</i><i id="buttonText">Events</i></a></span>');
-    $("#artist-page").attr("href",response.url)
+    $("#artist-page").attr("href",response.url);
+    $("#followers").html("");
+    $("#followers").append("<strong>Followers: </strong>"+response.tracker_count);
 
   });
   };
 
-  getArtistInfo(artistName);
-  getEventInfo(artistName);
+  
 
 
 

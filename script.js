@@ -164,10 +164,12 @@ $("#eventsNum").append("<strong>Upcoming Events: </strong>"+response.length);
 $(".event-info").html("");
 
 
+
   for (let i = 0; i < response.length; i++) {
-    $(".event-info").append("<p><strong>Date: </strong>"+response[i].datetime+"</p>")
+    var goodDate = moment(response[i].datetime).format('MMMM Do, YYYY @ h:mm A')
+    $(".event-info").append("<p><strong>Date: </strong>"+goodDate+"</p>")
     $(".event-info").append("<p><strong>Venue: </strong>"+response[i].venue.name+" - "+response[i].venue.city+", "+response[i].venue.country+"</p>")
-    $(".event-info").append("<p><a href='"+response[i].url+"' target='_blank'><button type='button' class='waves-effect waves-light btn'>Buy Tickets</button></a></p>")
+    $(".event-info").append("<p><a href='"+response[i].url+"' target='_blank'><button type='button' class='waves-effect waves-light btn'>Buy Tickets</button></a></p><hr>")
     
   };
 

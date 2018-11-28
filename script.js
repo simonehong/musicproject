@@ -1,4 +1,5 @@
 
+
  // Initialize Firebase
  var config = {
     apiKey: "AIzaSyDE2vhxcpy_mIQ7xlURKPlY_d4YnLyR0PE",
@@ -207,6 +208,7 @@ $(".event-info").html("");
 
 // Get Events Array from BandsInTown
 function getArtistInfo(artistName) {
+  
 
   var queryBand = "https://rest.bandsintown.com/artists/" +
           artistName + "?app_id=ab1539793d4956976bf4f8052a7ed8cb";
@@ -253,20 +255,23 @@ function getArtistInfo(artistName) {
 
 
 
+  var Video = []; 
 
+var getVideo = function(){
 
-
+  
 // Begin building an object to contain our API call's query parameters
 // Set the API key
 var apiKey ="AIzaSyCHYhmqVOwG3KDfWOt9iZS0i1dZVMsabgo";
 
 // Grabbing and storing the band property value from Bandsintown
-var bandName = $(this).data("type");  //This is just a placeholder until Bandsintown api call is finished
-console.log(bandName);
+//var bandName = $(this).data("type");  //This is just a placeholder until Bandsintown api call is finished
+//console.log(bandName);
+var bandName = "TaylorSwift"
 
-// Constructing a queryURL using the animal name
+// Constructing a queryURL using the band name
 var queryURL = "https://www.googleapis.com/youtube/v3/search?q=" +
-      bandName + "&key=" + apiKey + "&part=snippet";
+      bandName + "&key=" + apiKey + "&part=snippet&type=video";
 
 // Performing an AJAX request with the queryURL
 $.ajax({
@@ -277,7 +282,235 @@ $.ajax({
       .then(function(response) {
         console.log(queryURL);
 
-        console.log(response);//
+        console.log(response);
+        
+
+        for (var i = 0; i < response.items.length; i++) {
+
+          // Creating and storing a div tag
+         var artistDiv = $("<div class='search-item'>");
+
+         // Creating and storing an image tag
+         var artistImage = $("<img>");
+
+         //get thumbnail from youtube
+          var artistThumb = response.items[i].snippet.thumbnails.high.url;
+
+          //adding src to image tag
+          artistImage.attr("src", artistThumb);
+
+          //adding image to div
+          artistDiv.append(artistImage);
+
+          // Appending the animalDiv to the HTML page in the "#gifs-appear-here" div
+          $("#image-appear-here").append(artistDiv);
+
+          //get videoId from youtube
+          artistVideo = response.items[i].id.videoId;
+          
+          Video.push(artistVideo);
+          
+        
+         
+          
+
+        
+      };
+      
+      console.log(Video);
+
+      
+      
+  });
+
+  };
+
+  console.log(Video);
+  console.log(typeof(Video));
+
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+console.log(Video);
+var tag = document.createElement('script');
+
+
+
+tag.src = "https://www.youtube.com/iframe_api";
+
+var firstScriptTag = document.getElementsByTagName('script')[0];
+
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var YouTubePlayer = {
+
+  current: 0,
+
+  player: null,
+
+  /**
+
+   * Tracks ids here...
+
+   */
+
+  videos: [
+
+   "tCXGJQYZ9JA",
+ "3tmd-ClpJxA",
+ "e-ORhEE9VVg",
+//"nfWlot6h_JM",
+ //"VuNIsY6JdUw"
+
+  ],
+
+  currentlyPlaying: function () {
+
+    console.info('Current Track id', YouTubePlayer.videos[YouTubePlayer.current]);
+
+    return YouTubePlayer.videos[YouTubePlayer.current];
+
+  },
+
+  playNext: function () {
+
+    YouTubePlayer.increaseTrack()
+
+    if (YouTubePlayer.player) {
+
+      YouTubePlayer.currentlyPlaying();
+
+      YouTubePlayer.player.loadVideoById(YouTubePlayer.videos[YouTubePlayer.current]);
+
+    } else {
+
+      alert('Please Wait! Player is loading');
+
+    }
+
+  },
+
+  playPrevious: function () {
+
+    YouTubePlayer.decreaseTrack()
+
+    if (YouTubePlayer.player) {
+
+      YouTubePlayer.currentlyPlaying();
+
+      YouTubePlayer.player.loadVideoById(YouTubePlayer.videos[YouTubePlayer.current]);
+
+    } else {
+
+      alert('Please Wait! Player is loading');
+
+    }
+
+  },
+
+  increaseTrack: function () {
+
+    YouTubePlayer.current = YouTubePlayer.current + 1;
+
+    if (YouTubePlayer.current >= YouTubePlayer.videos.length) {
+
+      YouTubePlayer.current = 0;
+
+    }
+
+  },
+
+  decreaseTrack: function () {
+
+    YouTubePlayer.current = Math.max(YouTubePlayer.current - 1, 0);
+
+  },
+
+  onReady: function (event) {
+
+    event.target.loadVideoById(YouTubePlayer.videos[YouTubePlayer.current]);
+
+  },
+
+  onStateChange: function (event) {
+
+    if (event.data == YT.PlayerState.ENDED) {
+
+      YouTubePlayer.playNext();
+
+    }
+
+  }
+
+}
+
+
+
+function onYouTubeIframeAPIReady() {
+
+  YouTubePlayer.player = new YT.Player('youtube', {
+
+    height: '350',
+
+    width: '425',
+
+    events: {
+
+      'onReady': YouTubePlayer.onReady,
+
+      'onStateChange': YouTubePlayer.onStateChange
+
+    }
 
   });
 
+}
+
+
+/*var player;
+
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+//console.log(Video);
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        width: 640,
+        height: 360,
+        videoId: Video,
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+
+    });
+
+}
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    event.target.playVideo(getVideo);
+}
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+
+var done = false;
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, -10);
+        //stopVideo();
+        done = true;
+    }
+
+}
+function stopVideo() {
+    player.stopVideo();
+}*/
+
+getVideo();

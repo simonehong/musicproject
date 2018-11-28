@@ -12,8 +12,25 @@
 
   var database = firebase.database();
 
+  var nineSearch = [];
+
+  //Creates an array of search terms from Firebase and appends to the HTML
+  function showNineSearch(){
+    $("#prevSearch").empty();
+    for (var i = 0; i < nineSearch.length; i++){
+      var prevArtist = $("<a>");
+      prevArtist.addClass("collection-item");
+      prevArtist.attr("data-value", nineSearch[i].name);
+      prevArtist.attr("date", nineSearch[i].dateAdded);
+      prevArtist.text(nineSearch[i].name);
+
+      $("#prevSearch").append(prevArtist);
+    }
+  }
+
   //new band search will be created on button submit click
   $("#submit").on("click", function(event){
+
     event.preventDefault();
   //Grab user input
   var artistName = $("#bandSearch").val().trim();
@@ -31,6 +48,7 @@
       };
     };
 
+
   database.ref().push(searchArtist);
 
   console.log(searchArtist.name);
@@ -42,23 +60,29 @@
   });
 
   //create firebase event to push artist to database and append to previous search list on html
-    database.ref().on("child_added", function(childSnapshot){
+    var query = database.ref().orderByChild("dateAdded").limitToLast(9);
+
+
+  
+    query.on("child_added", function(childSnapshot){
       var artistName = childSnapshot.val().name;
       var dateAdded = childSnapshot.val().dateAdded;
 
       console.log(artistName);
       console.log(dateAdded);
+    
+      nineSearch.push(childSnapshot.val());
+      if (nineSearch.length > 9){
+        nineSearch.shift();
+      }
 
-  //push search term to previous search card
-      var prevArtist = $("<a>");
-      prevArtist.addClass("collection-item");
-      prevArtist.attr("data-value", artistName);
-      prevArtist.text(artistName);
 
-      $("#prevSearch").append(prevArtist);
-         
+      showNineSearch();
+
       
- })
+ });
+
+
 
 
 

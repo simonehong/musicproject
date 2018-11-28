@@ -30,17 +30,24 @@
 
   //new band search will be created on button submit click
   $("#submit").on("click", function(event){
-  event.preventDefault();
 
-  
+    event.preventDefault();
   //Grab user input
   var artistName = $("#bandSearch").val().trim();
+  
+      if (artistName == "") {
+        M.toast({html: 'Please enter a band name before submitting'});
+      } else {
+        getArtistInfo(artistName);
+        getEventInfo(artistName);
+      
+        // Creates local "temporary" object for holding search data
+        var searchArtist = {
+             name: artistName,
+             dateAdded: firebase.database.ServerValue.TIMESTAMP
+      };
+    };
 
-  // Creates local "temporary" object for holding search data
-  var searchArtist = {
-       name: artistName,
-       dateAdded: firebase.database.ServerValue.TIMESTAMP
-  };
 
   database.ref().push(searchArtist);
 
@@ -69,7 +76,9 @@
         nineSearch.shift();
       }
 
+
       showNineSearch();
+
       
  });
 
@@ -178,7 +187,20 @@ $.ajax({
   // Printing the entire object to console
   console.log(response);
 
-  
+$("#eventsNum").html("")
+$("#eventsNum").append("<strong>Upcoming Events: </strong>"+response.length);
+$(".event-info").html("");
+
+
+
+  for (let i = 0; i < response.length; i++) {
+    var goodDate = moment(response[i].datetime).format('MMMM Do, YYYY @ h:mm A')
+    $(".event-info").append("<p><strong>Date: </strong>"+goodDate+"</p>")
+    $(".event-info").append("<p><strong>Venue: </strong>"+response[i].venue.name+" - "+response[i].venue.city+", "+response[i].venue.country+"</p>")
+    $(".event-info").append("<p><a href='"+response[i].url+"' target='_blank'><button type='button' class='waves-effect waves-light btn'>Buy Tickets</button></a></p><hr>")
+    
+  };
+
   
 });
 };
@@ -198,19 +220,15 @@ function getArtistInfo(artistName) {
     console.log(response);
     //fill in the Card with artist info
     $("#artistpicture").attr("src", response.image_url);
-    $(".artist-name").html(artistName);
-    $("#artist-page").attr("href",response.url)
+    $(".artist-name").html(artistName+'<a class="btn-small waves-effect waves-light red right event-button"><i class="material-icons">events</i><i id="buttonText">Events</i></a></span>');
+    $("#artist-page").attr("href",response.url);
+    $("#followers").html("");
+    $("#followers").append("<strong>Followers: </strong>"+response.tracker_count);
 
   });
   };
 
-
-
-
-
-getArtistInfo(artistName);
-getEventInfo(artistName);
-
+  
 
 
 

@@ -14,18 +14,22 @@
 
   //new band search will be created on button submit click
   $("#submit").on("click", function(event){
-  event.preventDefault();
-  
+    event.preventDefault();
   //Grab user input
   var artistName = $("#bandSearch").val().trim();
-  getArtistInfo(artistName);
-  getEventInfo(artistName);
-
-  // Creates local "temporary" object for holding search data
-  var searchArtist = {
-       name: artistName,
-       dateAdded: firebase.database.ServerValue.TIMESTAMP 
-  };
+  
+      if (artistName == "") {
+        M.toast({html: 'Please enter a band name before submitting'});
+      } else {
+        getArtistInfo(artistName);
+        getEventInfo(artistName);
+      
+        // Creates local "temporary" object for holding search data
+        var searchArtist = {
+             name: artistName,
+             dateAdded: firebase.database.ServerValue.TIMESTAMP
+      };
+    };
 
   database.ref().push(searchArtist);
 

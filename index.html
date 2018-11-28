@@ -17,8 +17,8 @@
             <div class="col l12 m12 s12">
                 <form>
                     <div class="input-field card-panel" id="bigHeader">
-                        <input value="" id="bandSearch" type="text" class="validate col l10 m10 s10">
-                        <label class="active" for="bandSearch">Band Name</label>
+                        <input value="" id="bandSearch" type="text" class="validate col l10 m10 s10" placeholder="Band Name">
+                        <label class="active" for="bandSearch"></label>
                         <button class="btn-large waves-effect waves-light col l2 m2 s2" type="submit" name="action" id="submit"
                             value="submit">Submit
                             <i class="material-icons right">send</i>
@@ -36,20 +36,21 @@
                         <div class="card-image waves-effect waves-block waves-light">
                             <!-- use artist's image here -->
 
-                            <img class="activator" id="artistpicture" src="https://s3.amazonaws.com/bit-photos/large/8652942.jpeg">
+                            <img class="activator" id="artistpicture" src="images/band.jpg">
 
                         </div>
                         <div class="card-content">
                             <!-- insert artist's name here -->
-                            <span class="card-title activator grey-text text-darken-4 artist-name">Taylor Swift<a class="btn-small waves-effect waves-light red right event-button"><i
-                                        class="material-icons">events</i><i id="buttonText">Events</i></a></span>
+                            <span class="card-title activator grey-text text-darken-4 artist-name">#musicproject
+                                <!-- <a class="btn-small waves-effect waves-light red right event-button">
+                                <i class="material-icons">events</i><i id="buttonText">Events</i></a> -->
+                            </span>
                             <!-- bandsintown link here -->
-                            <p><a id="artist-page" href="https://www.bandsintown.com/a/157?came_from=267&app_id=ab1539793d4956976bf4f8052a7ed8cb"
-                                    target="_blank">Artist info page</a></p>
+                            <p><a id="artist-page" href="#">Artist info page</a></p>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4 artist-name">Taylor Swift<i class="material-icons right">close</i></span>
-                            <p id="followers"></p>
+                            <span class="card-title grey-text text-darken-4 artist-name"><i class="material-icons right">close</i></span>
+                            <p id="followers">Search for a band first.</p>
                             <p id="eventsNum"></p>
                             <hr>
                             <!-- This is where Event info inserts -->
@@ -68,18 +69,19 @@
             <div class="col l3 m12 s12 pull-l9" id="firebasePanel">
                 <div class="collection with-header">
                     <div class="collection-header">
-                        <h6>Previous Searches</h6>
+                        <h6>Live Search Feed</h6>
                     </div>
                     <div id="prevSearch">
-
-                    <a class="collection-item" data-value="Foo Fighters">Foo Fighters</a>
-
                     </div>
                     <!-- append search terms here -->
                 </div>
             </div>
 
         </div>
+        <footer>
+            <div class="credit">Icons made by <a href="https://www.flaticon.com/authors/simpleicon" title="SimpleIcon">SimpleIcon</a>
+                from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>

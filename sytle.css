@@ -1,7 +1,7 @@
 #bigHeader {
     height: 6rem;
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 15px;
 }
 
 body {
@@ -26,6 +26,11 @@ div {
     text-align: center;
     font-size: 1.5rem;
     transition: 0.3s;
+}
+
+.credit {
+    text-align: center;
+    font-size: 0.7rem;
 }
 
 /* custom scrollbar */

@@ -52,6 +52,14 @@ div {
     font-size: 0.7rem;
 }
 
+footer {
+    color: white;
+}
+
+a:link {
+    color: white;
+}
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;

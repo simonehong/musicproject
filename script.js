@@ -256,7 +256,7 @@ function getVideoArr(artistName) {
       for (var i = 0; i < 3; i++) {
       videoID = response.items[i].id.videoId
         console.log("video ID:"+videoID);
-        $("#youTubePanel").append('<iframe id="ytplayer" type="text/html" width="200" height="150" src="https://www.youtube.com/embed/'+videoID+'"frameborder="0" allowfullscreen>'+"<hr>");
+        $("#youTubePanel").append('<iframe id="ytplayer" type="text/html" class="yt-vid" src="https://www.youtube.com/embed/'+videoID+'"frameborder="5px" allowfullscreen>'+"<hr>");
         
       };
 

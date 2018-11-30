@@ -64,8 +64,6 @@ $("#submit").on("click", function (event) {
 //create firebase event to push artist to database and append to previous search list on html
 var query = database.ref().orderByChild("dateAdded").limitToLast(9);
 
-
-
 query.on("child_added", function (childSnapshot) {
   var artistName = childSnapshot.val().name;
   var dateAdded = childSnapshot.val().dateAdded;
@@ -81,8 +79,21 @@ query.on("child_added", function (childSnapshot) {
 
   showNineSearch();
 
+  //click on prev search term 
+$(".collection-item").on("click", function(event){
+  event.preventDefault();
+  var artistName = ($(this).attr("data-value"));
+   console.log(artistName);
+
+    getArtistInfo(artistName);
+    getEventInfo(artistName);
+    getVideoArr(artistName);
 
 });
+
+
+})
+
 
 
 

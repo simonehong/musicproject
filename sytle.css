@@ -81,7 +81,7 @@ div {
     }
 
     ::-webkit-scrollbar-thumb {
-        background: white;
+        background: teal;
         border-radius: 10px;
     }
 }

@@ -1,4 +1,3 @@
-// Initialize Firebase
 var config = {
   apiKey: "AIzaSyDE2vhxcpy_mIQ7xlURKPlY_d4YnLyR0PE",
   authDomain: "musicproject-77064.firebaseapp.com",
@@ -13,7 +12,6 @@ var database = firebase.database();
 
 var nineSearch = [];
 
-//Creates an array of search terms from Firebase and appends to the HTML
 function showNineSearch() {
   $("#prevSearch").empty();
   for (var i = 0; i < nineSearch.length; i++) {
@@ -27,11 +25,10 @@ function showNineSearch() {
   }
 }
 
-//new band search will be created on button submit click
 $("#submit").on("click", function (event) {
 
   event.preventDefault();
-  //Grab user input
+
   var artistName = $("#bandSearch").val().trim();
 
   if (artistName == "") {
@@ -43,7 +40,6 @@ $("#submit").on("click", function (event) {
     getEventInfo(artistName);
     getVideoArr(artistName);
 
-    // Creates local "temporary" object for holding search data
     var searchArtist = {
       name: artistName,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
@@ -56,12 +52,10 @@ $("#submit").on("click", function (event) {
   console.log(searchArtist.name);
   console.log(searchArtist.dateAdded);
 
-  //clear search box
   $("#bandSearch").val("");
 
 });
 
-//create firebase event to push artist to database and append to previous search list on html
 var query = database.ref().orderByChild("dateAdded").limitToLast(9);
 
 query.on("child_added", function (childSnapshot) {
@@ -76,10 +70,8 @@ query.on("child_added", function (childSnapshot) {
     nineSearch.shift();
   }
 
-
   showNineSearch();
 
-  //click on prev search term 
 $(".collection-item").on("click", function(event){
   event.preventDefault();
   var artistName = ($(this).attr("data-value"));
@@ -97,7 +89,6 @@ $(".collection-item").on("click", function(event){
 // Create API link to Bandsintown
 // App ID = ab1539793d4956976bf4f8052a7ed8cb
 
-// Get Artist Object from BandsInTown
 function getEventInfo(artistName) {
 
   var queryBand = "https://rest.bandsintown.com/artists/" +
@@ -108,7 +99,6 @@ function getEventInfo(artistName) {
     method: "GET"
   }).then(function (response) {
 
-    // Printing the entire object to console
     console.log(response);
 
     $("#eventsNum").html("")
@@ -129,7 +119,6 @@ function getEventInfo(artistName) {
   });
 };
 
-// Get Events Array from BandsInTown
 function getArtistInfo(artistName) {
 
 
@@ -141,9 +130,8 @@ function getArtistInfo(artistName) {
     method: "GET"
   }).then(function (response) {
 
-    // Printing the entire object to console
     console.log(response);
-    //fill in the Card with artist info
+
     $("#artistpicture").attr("src", response.image_url);
     $(".artist-name").html(artistName + '<a class="btn-small waves-effect waves-light red right event-button"><i class="material-icons">events</i><i id="buttonText">Events</i></a></span>');
     $("#artist-page").attr("href", response.url);
@@ -156,16 +144,11 @@ function getArtistInfo(artistName) {
 
 function getVideoArr(artistName) {
 
-
-  // Begin building an object to contain our API call's query parameters
-  // Set the API key
   var apiKey = "AIzaSyCHYhmqVOwG3KDfWOt9iZS0i1dZVMsabgo";
 
-  // Constructing a queryURL using the band name
   var queryURL = "https://www.googleapis.com/youtube/v3/search?q=" +
     artistName+" Live" + "&key=" + apiKey + "&part=snippet&type=video&videoSyndicated=true&videoEmbeddable=true";
 
-  // Performing an AJAX request with the queryURL
   $.ajax({
     url: queryURL,
     method: "GET"
